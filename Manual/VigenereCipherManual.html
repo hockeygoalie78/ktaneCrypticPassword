@@ -18,11 +18,12 @@
             var charReference = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
             var cells = document.getElementsByClassName("cipher");
 
-            for (var i = 0; i < 26; i++) {
+            for (var c = 0; c < 26; c++) {
                 charReference = rng.shuffleFisherYates(charReference);
 
-                for (var j = 0; j < 26; j++)
-                    cells[i * 26 + j].innerText = charReference[j];
+                for (var d = 0; d < 26; d++) {
+                    cells[c * 26 + d].innerText = charReference[d];
+                }
             }
         }
     </script>
@@ -51,10 +52,11 @@
                     <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
                     <span class="page-header-section-title">Module Name</span>
                 </div>
+
                 <div class="page-content">
                     <img src="img/Component/Module Name.svg" class="diagram">
                     <h2>On the Subject of Module Name</h2>
-                    <p class="flavour-text">Your flavor text should go here.</p>
+                    <p class="flavour-text">Fortunately this doesn't meet the standard of a certain bomb defusing game security requirements.</p>
 
                     <table class="shrink">
                         <tbody>

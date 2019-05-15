@@ -41,13 +41,12 @@ public class VigenereCipher : MonoBehaviour {
 
         //Generates the cipher table
         for (var c = 0; c < 26; c++) {
+            charTable[c] = new char[26];
             charList = RNG.ShuffleFisherYates(charList);
-            charTable[c] = charList;
-            Debug.Log(charTable[c].Join(""));
-        }
 
-        for (var c = 0; c < 26; c++) {
-            Debug.Log(charTable[c].Join(""));
+            for (var d = 0; d < 26; d++) {
+                charTable[c][d] = charList[d];
+            }
         }
 
         //Initialize start word
