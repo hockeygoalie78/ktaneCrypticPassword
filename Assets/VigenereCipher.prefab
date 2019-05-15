@@ -4037,11 +4037,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93606523b11a6f64db6df22c921b40ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombInfo: {fileID: 114510320270026084}
-  bombAudio: {fileID: 114413330095576138}
-  startWordMesh: {fileID: 102210187216971606}
-  keyWordMesh: {fileID: 102894965331360146}
-  buttons:
+  BombAudio: {fileID: 114413330095576138}
+  BombInfo: {fileID: 114510320270026084}
+  BombModule: {fileID: 114924059104638326}
+  Buttons:
   - {fileID: 114252800754299886}
   - {fileID: 114949738616341826}
   - {fileID: 114310792806616132}
@@ -4054,8 +4053,10 @@ MonoBehaviour:
   - {fileID: 114630131562114252}
   - {fileID: 114679559006378924}
   - {fileID: 114329203672003148}
-  submitButton: {fileID: 114110545788325950}
-  displayTextMesh:
+  SubmitButton: {fileID: 114110545788325950}
+  StartWordMesh: {fileID: 102210187216971606}
+  KeyWordMesh: {fileID: 102894965331360146}
+  DisplaytextMesh:
   - {fileID: 102489350486037064}
   - {fileID: 102999433262559318}
   - {fileID: 102512387190722702}

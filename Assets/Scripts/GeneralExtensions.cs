@@ -49,17 +49,6 @@ public static class GeneralExtensions
         return formatedTime;
     }
 
-    public static string Join<T>(this IEnumerable<T> values, string separator = " ")
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-        IEnumerator<T> enumerator = values.GetEnumerator();
-        if (enumerator.MoveNext()) stringBuilder.Append(enumerator.Current); else return "";
-
-        while (enumerator.MoveNext()) stringBuilder.Append(separator).Append(enumerator.Current);
-
-        return stringBuilder.ToString();
-    }
-
     //String wrapping code from http://www.java2s.com/Code/CSharp/Data-Types/ForcesthestringtowordwrapsothateachlinedoesntexceedthemaxLineLength.htm
     public static string Wrap(this string str, int maxLength)
     {
@@ -199,51 +188,6 @@ public static class GeneralExtensions
         if (!dic.ContainsKey(key))
             dic[key] = new List<V>();
         dic[key].Add(value);
-    }
-
-    /// <summary>
-    ///     Brings the elements of the given list into a random order.</summary>
-    /// <typeparam name="T">
-    ///     Type of elements in the list.</typeparam>
-    /// <param name="list">
-    ///     List to shuffle.</param>
-    /// <returns>
-    ///     The list operated on.</returns>
-    public static T Shuffle<T>(this T list) where T : IList
-    {
-        if (list == null)
-            throw new ArgumentNullException("list");
-        for (int j = list.Count; j >= 1; j--)
-        {
-            int item = UnityEngine.Random.Range(0, j);
-            if (item < j - 1)
-            {
-                var t = list[item];
-                list[item] = list[j - 1];
-                list[j - 1] = t;
-            }
-        }
-        return list;
-    }
-
-    /// <summary>
-    ///     Returns a random element from the specified collection.</summary>
-    /// <typeparam name="T">
-    ///     The type of the elements in the collection.</typeparam>
-    /// <param name="src">
-    ///     The collection to pick from.</param>
-    /// <param name="rnd">
-    ///     Optionally, a random number generator to use.</param>
-    /// <returns>
-    ///     The element randomly picked.</returns>
-    /// <remarks>
-    ///     This method enumerates the entire input sequence into an array.</remarks>
-    public static T PickRandom<T>(this IEnumerable<T> src)
-    {
-        var list = (src as IList<T>) ?? src.ToArray();
-        if (list.Count == 0)
-            throw new InvalidOperationException("Cannot pick an element from an empty set.");
-        return list[UnityEngine.Random.Range(0, list.Count)];
     }
 
     public static bool TryParseTime(this string timeString, out float time)
