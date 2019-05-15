@@ -74,25 +74,10 @@ public class VigenereCipher : MonoBehaviour {
             displayIndices[c] = Random.Range(0, 5);
         }
 
+        //Set the displays to the proper letter
         for (var c = 0; c < 6; c++) {
             DisplaytextMesh[c].text = displayLetters[c][displayIndices[c]].ToString();
         }
-
-        //Debug.Log("Solution: " + solutionWord);
-
-        //DEBUG
-        /*for(int c = 0; c < 6; c++)
-        {
-            Debug.Log("Display " + c + ":");
-            for(int d = 0; d < 5; d++)
-            {
-                Debug.Log("Letter " + d + ": " + displayLetters[c][d]);
-            }
-        }
-        for(int c = 0; c < 6; c++)
-        {
-            Debug.Log("Index " + c + ": " + displayIndices[c]);
-        }*/
 
         //Set delegates for the up and down buttons
         for (var c = 0; c < 12; c++) {
