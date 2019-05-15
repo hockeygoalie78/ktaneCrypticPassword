@@ -28,37 +28,37 @@ public class VigenereCipher : MonoBehaviour {
         "EXCEPT", "ORDERS", "PUBLIC", "HOCKEY", "SLENDY", "SYSTEM", "MEMORY", "SKILLS", "SERIAL", "RANDOM"
     };
 
-    private readonly char[][] charTable = new char[25][];
+    private readonly char[][] charTable = new char[26][];
     private readonly List<char>[] displayLetters = new List<char>[6];
     private readonly int[] displayIndices = new int[6];
-    private readonly char[] charReference =  Enumerable.Range('A', 25).Select(x => (char)x).ToArray();
 
     private string solutionWord = "";
 
     void Start() {
         //Gets the rule seed RNG methods
         RNG = RuleSeedable.GetRNG();
-        var charList = charReference;
+        var charList = Enumerable.Range('A', 26).Select(x => (char)x).ToArray();
 
         //Generates the cipher table
-        for (var c = 0; c < 25; c++) {
-            charTable[c] = RNG.ShuffleFisherYates(charList);
+        for (var c = 0; c < 26; c++) {
+            charList = RNG.ShuffleFisherYates(charList);
+            charTable[c] = charList;
+            Debug.Log(charTable[c].Join(""));
+        }
+
+        for (var c = 0; c < 26; c++) {
+            Debug.Log(charTable[c].Join(""));
         }
 
         //Initialize start word
-        var startWord = wordList.Pick();
-        StartWordMesh.text = startWord;
+        var startWord = StartWordMesh.text = wordList.Pick();
 
         //Initialize key word
-        charList = charReference;
-        var keyWord = charList.Shuffle().Take(Random.Range(3, 7)).Join("");
-        KeyWordMesh.text = keyWord;
+        var keyWord = KeyWordMesh.text = charList.Shuffle().Take(Random.Range(3, 7)).Join("");
 
         //Determine solution
-        charList = charReference;
-
         for (var c = 0; c < 6; c++) {
-            //Formula calculating the Vigenere Cipher's transition
+            //Calculates the solution based on the table cipher
             solutionWord += charTable[keyWord[c % keyWord.Length] - 'A'][startWord[c] - 'A'];
 
             //Initialize letters
@@ -68,11 +68,13 @@ public class VigenereCipher : MonoBehaviour {
             };
 
             //Add filler letters to the display letters
-            displayLetters[c].AddRange(charList.Shuffle().Take(4));
+            displayLetters[c].AddRange(charList.Except(displayLetters[c]).ToArray().Shuffle().Take(4));
 
             //Set display indices
             displayIndices[c] = Random.Range(0, 5);
         }
+
+        Debug.Log("Solution is: " + solutionWord);
 
         //Set the displays to the proper letter
         for (var c = 0; c < 6; c++) {
@@ -128,7 +130,7 @@ public class VigenereCipher : MonoBehaviour {
         BombAudio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.BigButtonPress, transform);
 
         //Handle pass if the current input is the same as the solution otherwise strike
-        if (solutionWord.Equals(Enumerable.Range(0, 6).Select(x => displayLetters[displayIndices[x]]).Join(""))) {
+        if (solutionWord.Equals(Enumerable.Range(0, 6).Select(x => displayLetters[x][displayIndices[x]]).Join(""))) {
             BombModule.HandlePass();
         } else {
             BombModule.HandleStrike();
