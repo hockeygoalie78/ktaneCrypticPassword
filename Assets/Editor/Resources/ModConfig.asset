@@ -26,4 +26,4 @@ MonoBehaviour:
     Manual PDF: (Link soon)'
   version: 1.0
   outputFolder: build
-  previewImage: {fileID: 0}
+  previewImage: {fileID: 2800000, guid: a5b8c8e539408364a9be58836831a4f2, type: 3}

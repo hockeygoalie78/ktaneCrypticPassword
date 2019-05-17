@@ -6,7 +6,7 @@ using UnityEngine;
 /// Module made by hockeygoalie78 and KingSlendy
 /// Use a cipher similar to Vigenere to determine and submit the correct encoded word.
 /// </summary>
-public class VigenereCipher : MonoBehaviour {
+public class CrypticPassword : MonoBehaviour {
     public KMAudio BombAudio;
     public KMBombInfo BombInfo;
     public KMBombModule BombModule;
