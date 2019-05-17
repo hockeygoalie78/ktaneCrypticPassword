@@ -2563,7 +2563,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 26cdee844cb231740941635a5e5962c7, type: 2}
+  - {fileID: 2100000, guid: 39addd323bbd42b43aada630a7435aad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4563,8 +4563,8 @@ MonoBehaviour:
   m_Script: {fileID: -119419473, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModuleType: vigenereCipher
-  ModuleDisplayName: Vigenere Cipher
+  ModuleType: CrypticPassword
+  ModuleDisplayName: Cryptic Password
   RequiresTimerVisibility: 0
 --- !u!114 &114932280833422400
 MonoBehaviour:

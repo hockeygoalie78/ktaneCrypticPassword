@@ -1,6 +1,4 @@
-﻿using KModkit;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -34,7 +32,13 @@ public class VigenereCipher : MonoBehaviour {
 
     private string solutionWord = "";
 
+    bool moduleSolved;
+    static int moduleIdCounter = 1;
+    int moduleId;
+
     void Start() {
+        moduleId = moduleIdCounter++;
+
         //Gets the rule seed RNG methods
         RNG = RuleSeedable.GetRNG();
         var charList = Enumerable.Range('A', 26).Select(x => (char)x).ToArray();
@@ -51,9 +55,11 @@ public class VigenereCipher : MonoBehaviour {
 
         //Initialize start word
         var startWord = StartWordMesh.text = wordList.Pick();
+        Debug.LogFormat(@"[Cryptic Password #{0}] Starting word is: {1}", moduleId, startWord);
 
         //Initialize key word
         var keyWord = KeyWordMesh.text = charList.Shuffle().Take(Random.Range(3, 7)).Join("");
+        Debug.LogFormat(@"[Cryptic Password #{0}] Key word is: {1}", moduleId, keyWord);
 
         //Determine solution
         for (var c = 0; c < 6; c++) {
@@ -73,7 +79,7 @@ public class VigenereCipher : MonoBehaviour {
             displayIndices[c] = Random.Range(0, 5);
         }
 
-        Debug.Log("Solution is: " + solutionWord);
+        Debug.LogFormat(@"[Cryptic Password #{0}] Solution is: {1}", moduleId, solutionWord);
 
         //Set the displays to the proper letter
         for (var c = 0; c < 6; c++) {
@@ -125,14 +131,21 @@ public class VigenereCipher : MonoBehaviour {
     /// </summary>
     private void CheckSubmission() {
         //Movement/audio
-        SubmitButton.AddInteractionPunch(.5f);
+        SubmitButton.AddInteractionPunch(0.5f);
         BombAudio.PlayGameSoundAtTransform(KMSoundOverride.SoundEffect.BigButtonPress, transform);
 
+        if (moduleSolved) return;
+
+        var submissionWord = Enumerable.Range(0, 6).Select(x => displayLetters[x][displayIndices[x]]).Join("");
+
         //Handle pass if the current input is the same as the solution otherwise strike
-        if (solutionWord.Equals(Enumerable.Range(0, 6).Select(x => displayLetters[x][displayIndices[x]]).Join(""))) {
+        if (solutionWord.Equals(submissionWord)) {
             BombModule.HandlePass();
+            moduleSolved = true;
+            Debug.LogFormat(@"[Cryptic Password #{0}] Module solved!");
         } else {
             BombModule.HandleStrike();
+            Debug.LogFormat(@"[Cryptic Password #{0}] That was incorrect. Submitted word was: {1}", moduleId, submissionWord);
         }
     }
 }
