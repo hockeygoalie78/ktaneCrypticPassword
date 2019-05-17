@@ -14,8 +14,13 @@ MonoBehaviour:
   id: CrypticPassword
   title: Cryptic Password
   author: hockeygoalie78, KingSlendy
-  description: 'Fortunately this doesn''t meet a certain bomb defusing game''s standard
-    security requirements.
+  description: 'Why do you need to encrypt your password? It''s not PASSWORD, is it?
+
+
+    Use the starting word and key word to select and submit the encrypted password.
+
+
+    Made by: hockeygoalie78 and KingSlendy
 
 
     moduleID: CrypticPassword
