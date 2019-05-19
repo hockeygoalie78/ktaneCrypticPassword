@@ -26,9 +26,9 @@ MonoBehaviour:
     moduleID: CrypticPassword
 
 
-    Manual HTML: (Link soon)
+    Manual HTML: https://ktane.timwi.de/HTML/Cryptic%20Password.html
 
-    Manual PDF: (Link soon)'
+    Manual PDF: https://ktane.timwi.de/PDF/Cryptic%20Password.pdf'
   version: 1.0
   outputFolder: build
   previewImage: {fileID: 2800000, guid: a5b8c8e539408364a9be58836831a4f2, type: 3}
